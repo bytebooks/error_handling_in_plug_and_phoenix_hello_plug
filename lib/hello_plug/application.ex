@@ -8,8 +8,7 @@ defmodule HelloPlug.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: HelloPlug.Worker.start_link(arg)
-      # {HelloPlug.Worker, arg},
+      Plug.Adapters.Cowboy.child_spec(:http, HelloPlug.Web, [], [port: 3000])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
